@@ -15,7 +15,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get("https://practiceapi.devmountain.com/products/")
+    .get("https://practiceapi.devmountain.com/products/")
       .then(response => {
         this.setState({
           products: response.data
@@ -23,8 +23,9 @@ class App extends Component {
       });
   }
   addToCart(item) {
+    let cartItems = [...this.state.cart, item]
     this.setState({
-      cart: [...this.state.cart, item]
+      cart: cartItems
     });
   }
   removeFromCart(index) {
@@ -36,9 +37,14 @@ class App extends Component {
   }
   navigate(location) {
     if (location === "cart") {
-      this.state.showCart = true;
+      this.setState({
+        showCart: true
+      });
     } else {
-      this.state.showCart = false;
+      this.setState({
+        showCart: false
+      })
+      
     }
   }
   render() {
